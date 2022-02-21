@@ -17,13 +17,6 @@ public class SettingsMenu : MonoBehaviour
     {
         sliderGlobalVolume.onValueChanged.AddListener(updateGlobalVolumeText);
         sliderSFXVolume.onValueChanged.AddListener(updateSFXText);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void updateGlobalVolumeText(float value)
