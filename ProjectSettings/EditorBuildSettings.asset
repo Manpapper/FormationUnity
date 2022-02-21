@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 8864aebdf7ce163468a1713b0416a1cf
+  - enabled: 1
+    path: Assets/Scenes/TempYann.unity
+    guid: 600a1a3fe6749de4fad0eb0bd4cb562b
   m_configObjects: {}
