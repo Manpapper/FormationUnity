@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToMenuWarning
       objectReference: {fileID: 0}
+    - target: {fileID: 3873305209535243181, guid: 2256884e8a04f3f4cb14f899aa806fcc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2256884e8a04f3f4cb14f899aa806fcc, type: 3}
 --- !u!1001 &8055094380692813886
@@ -379,6 +383,10 @@ PrefabInstance:
     - target: {fileID: 3146017481053926659, guid: 1dad03ab9fd342a4b9409d73083cfd17, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146017481053926659, guid: 1dad03ab9fd342a4b9409d73083cfd17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7249421711799563027, guid: 1dad03ab9fd342a4b9409d73083cfd17, type: 3}
       propertyPath: m_Pivot.x
