@@ -21,12 +21,17 @@ public class SettingsMenu : MonoBehaviour
 
     public void updateGlobalVolumeText(float value)
     {
-        textGlobalVolumeValue.text = String.Format("{0}%", Math.Round(value * 100f, MidpointRounding.ToEven).ToString());
+        updateSliderText(textGlobalVolumeValue, value);
     }
 
     public void updateSFXText(float value)
     {
-        textSFXVolumeValue.text = String.Format("{0}%", Math.Round(value * 100f, MidpointRounding.ToEven).ToString());
+        updateSliderText(textSFXVolumeValue, value);
+    }
+
+    void updateSliderText(Text sliderText, float value)
+    {
+        sliderText.text = String.Format("{0}%", Math.Round(value * 100f, MidpointRounding.ToEven).ToString());
     }
 
 
