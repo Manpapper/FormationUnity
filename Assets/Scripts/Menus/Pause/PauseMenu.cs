@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField]
     private GameObject pauseCanvas;
-    [SerializeField]
     private GameObject toMenuWarning;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         GetItems();
@@ -18,23 +15,20 @@ public class PauseMenu : MonoBehaviour
 
     void GetItems()
 	{
-        pauseCanvas = Resources.Load<GameObject>("Prefabs/PauseCanvas");
+        pauseCanvas = GameObject.Find("PauseCanvas");
+
         toMenuWarning = Resources.Load<GameObject>("Prefabs/ToMenuWarning");
+        toMenuWarning = GameObject.Instantiate(toMenuWarning);
+        toMenuWarning.SetActive(false);
     }
 
-    void Resume()
+    public void Resume()
 	{
         //Resume game
 	}
 
-    void QuitToMenu()
+    public void QuitToMenu()
 	{
-        //
+        toMenuWarning.SetActive(true);
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
