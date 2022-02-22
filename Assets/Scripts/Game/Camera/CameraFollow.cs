@@ -14,12 +14,13 @@ public class CameraFollow : MonoBehaviour
 		{
             transform.position = new Vector3(player.position.x, player.position.y, -10f);
 		}
+		else if (GameObject.Find("Player"))
+		{
+				player = transform.Find("Player");
+		}
 		else
 		{
-			if (GameObject.Find("Player"))
-			{
-				player = transform.Find("Player");
-			}
+			//Do nothing
 		}
     }
 }
