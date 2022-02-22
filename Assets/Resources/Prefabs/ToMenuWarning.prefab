@@ -199,7 +199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7858326516280823611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5569687946322128151}
+        m_TargetAssemblyTypeName: PauseQuitWarning, Assembly-CSharp
+        m_MethodName: NoStay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3110691018572747883
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +332,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8811676828584975139}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5569687946322128151}
+        m_TargetAssemblyTypeName: PauseQuitWarning, Assembly-CSharp
+        m_MethodName: YesQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3215477566179275568
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +594,7 @@ GameObject:
   - component: {fileID: 5521938756566521336}
   - component: {fileID: 8382609917759666806}
   - component: {fileID: 7217283545890495373}
+  - component: {fileID: 5569687946322128151}
   m_Layer: 5
   m_Name: ToMenuWarning
   m_TagString: Untagged
@@ -660,3 +685,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5569687946322128151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873305209535243181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a3340b94611ca4eaedced0d05184e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

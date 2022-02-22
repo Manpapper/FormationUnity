@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseCanvas;
-    public GameObject toMenuWarning;
+    private GameObject pauseCanvas;
+    private GameObject toMenuWarning;
 
 
     void Start()
@@ -15,8 +15,11 @@ public class PauseMenu : MonoBehaviour
 
     void GetItems()
 	{
-        //pauseCanvas = Resources.Load<GameObject>("Prefabs/PauseCanvas");
-        //toMenuWarning = Resources.Load<GameObject>("Prefabs/ToMenuWarning");
+        pauseCanvas = GameObject.Find("PauseCanvas");
+
+        toMenuWarning = Resources.Load<GameObject>("Prefabs/ToMenuWarning");
+        toMenuWarning = GameObject.Instantiate(toMenuWarning);
+        toMenuWarning.SetActive(false);
     }
 
     public void Resume()
@@ -27,6 +30,5 @@ public class PauseMenu : MonoBehaviour
     public void QuitToMenu()
 	{
         toMenuWarning.SetActive(true);
-        pauseCanvas.SetActive(false);
 	}
 }
