@@ -14,6 +14,9 @@ public class GameHandler : MonoBehaviour
     {
         GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemy");
         if (enemy != null) { GameObject.Instantiate(enemy); }
+
+        GameObject packman = Resources.Load<GameObject>("Prefabs/Packman");
+        if (packman != null) { GameObject.Instantiate(packman); }
     }
 
     private void Init()
