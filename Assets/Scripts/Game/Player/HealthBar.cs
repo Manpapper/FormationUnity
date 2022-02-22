@@ -21,4 +21,5 @@ public class HealthBar : MonoBehaviour
     {
         healthBar.value = hp;
     }
+
 }
