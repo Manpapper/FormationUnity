@@ -6,6 +6,7 @@ public class PlayerStats
 {
 	float movementSpeed = 1f;
 	float playerHealth = 100f;
+	int playerXp = 0;
 
 	public float GetMovementSpeed()
 	{
@@ -20,5 +21,15 @@ public class PlayerStats
 	public void SetPlayerHealth(float value)
 	{
 		playerHealth = value;
+	}
+
+	public float GetPlayerXp()
+	{
+		return playerXp;
+	}
+
+	public void SetPlayerXp(int value)
+	{
+		playerXp = value;
 	}
 }
