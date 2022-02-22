@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class GameHandler : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class GameHandler : MonoBehaviour
         GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
         if (healthBar != null) { GameObject.Instantiate(healthBar); }
 
-
+        GameObject enemy = GameObject.Find("Enemy");
+        enemy.GetComponent<AIDestinationSetter>().target = player.transform;
     }
 
 }
