@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PM2D : MonoBehaviour
 {
-
+    
     public CC2D controller;
 
     public float runSpeed = 40f;
