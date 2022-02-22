@@ -23,7 +23,7 @@ public class CC2D : MonoBehaviour
 	public void Move(float moveX, float moveY)
 	{
 		// Move the character by finding the target velocity
-		Vector3 targetVelocity = new Vector2(moveX * 10f * pStats.GetMovementSpeed(), moveY * 10f * pStats.GetMovementSpeed());
+		Vector3 targetVelocity = new Vector2(moveX * 10f * pStats.MovementSpeed, moveY * 10f * pStats.MovementSpeed);
 		// And then smoothing it out and applying it to the character
 		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 

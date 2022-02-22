@@ -4,32 +4,13 @@ using UnityEngine;
 
 public class PlayerStats
 {
+	int playerLvl = 0;
 	float movementSpeed = 1f;
 	float playerHealth = 100f;
 	int playerXp = 0;
 
-	public float GetMovementSpeed()
-	{
-		return movementSpeed;
-	}
-
-	public float GetPlayerHealth()
-	{
-		return playerHealth;
-	}
-
-	public void SetPlayerHealth(float value)
-	{
-		playerHealth = value;
-	}
-
-	public float GetPlayerXp()
-	{
-		return playerXp;
-	}
-
-	public void SetPlayerXp(int value)
-	{
-		playerXp = value;
-	}
+	public int PlayerLvl { get => playerLvl; set => playerLvl = value; }
+	public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+	public float PlayerHealth { get => playerHealth; set => playerHealth = value; }
+	public int PlayerXp { get => playerXp; set => playerXp = value; }
 }
