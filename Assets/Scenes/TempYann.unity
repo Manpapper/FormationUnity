@@ -380,6 +380,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 681279252223573423, guid: 1dad03ab9fd342a4b9409d73083cfd17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000030517578
+      objectReference: {fileID: 0}
+    - target: {fileID: 681279252223573423, guid: 1dad03ab9fd342a4b9409d73083cfd17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.27096176
+      objectReference: {fileID: 0}
     - target: {fileID: 3146017481053926659, guid: 1dad03ab9fd342a4b9409d73083cfd17, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
