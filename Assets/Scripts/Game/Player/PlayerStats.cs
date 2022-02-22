@@ -11,4 +11,14 @@ public class PlayerStats
 	{
 		return movementSpeed;
 	}
+
+	public float GetPlayerHealth()
+	{
+		return playerHealth;
+	}
+
+	public void SetPlayerHealth(float value)
+	{
+		playerHealth = value;
+	}
 }
