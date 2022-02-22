@@ -352,3 +352,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d11337e6283e64da66f5f1c9798611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  playerController: {fileID: 0}
