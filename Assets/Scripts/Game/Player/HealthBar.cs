@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        playerController = GetComponent<CC2D>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<CC2D>();
 
         healthBar = GetComponent<Slider>();
         healthBar.maxValue = playerController.pStats.PlayerMaxHealth;

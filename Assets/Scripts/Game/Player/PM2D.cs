@@ -5,7 +5,7 @@ using UnityEngine;
 public class PM2D : MonoBehaviour
 {
     
-    public CC2D controller;
+    private CC2D controller;
 
     public float runSpeed = 40f;
 
@@ -16,7 +16,7 @@ public class PM2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CC2D>();
     }
 
     // Update is called once per frame
