@@ -17,9 +17,10 @@ public class HealthBar : MonoBehaviour
         healthBar.value = playerController.pStats.PlayerHealth;
     }
 
-    public void SetHealth(int hp)
+    public void SetHealth(float hp)
     {
         healthBar.value = hp;
+        Debug.Log("healthBar.value: " + healthBar.value);
     }
 
 }

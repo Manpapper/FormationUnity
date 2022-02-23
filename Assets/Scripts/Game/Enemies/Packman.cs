@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Packman : Enemy
 {
-    public void Awake()
+    public void Start()
     {
         Health = 200;
         MovementSpeed = 10;
         Damage = 1;
+        Cooldown = 0.5f;
     }
 }

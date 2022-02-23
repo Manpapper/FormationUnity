@@ -10,6 +10,8 @@ public class CC2D : MonoBehaviour
 
 	public PlayerStats pStats = new PlayerStats();
 
+	private HealthBar healthBar;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -52,4 +54,18 @@ public class CC2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	public void TakeDamage(float damage)
+    {
+		Debug.Log("Health: " + pStats.PlayerHealth);
+		pStats.PlayerHealth -= damage;
+		UpdateHealthBar(pStats.PlayerHealth);
+    }
+
+	private void UpdateHealthBar(float value)
+    {
+        if (!healthBar) { healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>(); };
+
+		healthBar.SetHealth(value);
+    }
 }

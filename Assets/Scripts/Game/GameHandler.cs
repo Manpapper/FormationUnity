@@ -13,10 +13,10 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemy");
-        if (enemy != null) { GameObject.Instantiate(enemy); }
+        if (enemy) { GameObject.Instantiate(enemy); }
 
         GameObject packman = Resources.Load<GameObject>("Prefabs/Packman");
-        if (packman != null) { GameObject.Instantiate(packman); }
+        if (packman) { GameObject.Instantiate(packman); }
     }
 
     private void Init()
@@ -29,8 +29,8 @@ public class GameHandler : MonoBehaviour
             player = GameObject.Instantiate(player);
             Camera.main.GetComponent<CameraFollow>().PlayerTransform = player.transform;
         }
-
         GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
-        if (healthBar != null) { GameObject.Instantiate(healthBar); }
+        if (healthBar) { GameObject.Instantiate(healthBar); }
+
     }
 }
