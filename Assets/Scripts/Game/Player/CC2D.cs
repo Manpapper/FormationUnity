@@ -57,7 +57,6 @@ public class CC2D : MonoBehaviour
 
 	public void TakeDamage(float damage)
     {
-		Debug.Log("Health: " + pStats.PlayerHealth);
 		pStats.PlayerHealth -= damage;
 		UpdateHealthBar(pStats.PlayerHealth);
     }

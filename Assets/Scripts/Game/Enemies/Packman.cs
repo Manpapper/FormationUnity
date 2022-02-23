@@ -8,7 +8,7 @@ public class Packman : Enemy
     {
         Health = 200;
         MovementSpeed = 10;
-        Damage = 1;
-        Cooldown = 0.5f;
+        Damage = 2f;
+        Cooldown = 0.2f;
     }
 }
