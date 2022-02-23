@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PM2D : MonoBehaviour
 {
-    
+    private Animator playerAnim;
     private CC2D controller;
 
     public float runSpeed = 40f;
@@ -16,6 +16,7 @@ public class PM2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAnim = this.gameObject.GetComponent<Animator>();
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<CC2D>();
     }
 
@@ -24,10 +25,11 @@ public class PM2D : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
         verticalMove = Input.GetAxisRaw("Vertical");
+        controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, verticalMove * Time.fixedDeltaTime * runSpeed);
+        playerAnim.SetFloat("Speed", Mathf.Abs(horizontalMove * runSpeed) + Mathf.Abs(verticalMove * runSpeed));
     }
 
 	private void FixedUpdate()
 	{
-        controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, verticalMove * Time.fixedDeltaTime * runSpeed);
 	}
 }

@@ -12,9 +12,12 @@ public class CC2D : MonoBehaviour
 
 	private HealthBar healthBar;
 
+	private Animator playerAnim;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		playerAnim = this.gameObject.GetComponent<Animator>();
 		//Physics2D.IgnoreLayerCollision(3, 7);
 	}
 
@@ -22,6 +25,9 @@ public class CC2D : MonoBehaviour
 	{
 	}
 
+	private void Update()
+	{
+	}
 
 	public void Move(float moveX, float moveY)
 	{
