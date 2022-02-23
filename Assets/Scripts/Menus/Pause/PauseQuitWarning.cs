@@ -23,6 +23,7 @@ public class PauseQuitWarning : MonoBehaviour
     public void NoStay()
 	{
         Debug.Log("NoStay");
+        GameObject.Find("GameHandler").GetComponent<GameHandler>().pauseMenu.GetComponent<PauseMenu>().IsWarningActive = false;
         this.gameObject.SetActive(false);
 	}
 }

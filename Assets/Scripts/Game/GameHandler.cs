@@ -5,6 +5,11 @@ using Pathfinding;
 
 public class GameHandler : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public GameObject deathCanvas;
+    public GameObject quitWarning;
+    PauseMenu pauseMenuScript;
+
     private void Awake()
     {
         Init();
@@ -16,18 +21,43 @@ public class GameHandler : MonoBehaviour
         if (enemy) { GameObject.Instantiate(enemy); }
     }
 
-    private void Init()
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape) && pauseMenuScript.IsWarningActive == false)
+		{
+			if (pauseMenuScript.isPaused)
+			{
+                pauseMenuScript.Resume();
+			} else
+			{
+                pauseMenuScript.Pause();
+            }
+		}
+	}
+
+	private void Init()
     {
+        deathCanvas = Resources.Load<GameObject>("Prefabs/UI/DeathCanvas");
+        deathCanvas = GameObject.Instantiate(deathCanvas);
+
+        pauseMenu = Resources.Load<GameObject>("Prefabs/UI/Pause/PauseCanvas");
+        pauseMenu = GameObject.Instantiate(pauseMenu);
+        pauseMenuScript = pauseMenu.GetComponent<PauseMenu>();
+
+        quitWarning = Resources.Load<GameObject>("Prefabs/UI/Pause/ToMenuWarning");
+        quitWarning = GameObject.Instantiate(quitWarning);
+
         GameObject pathFinder = Resources.Load<GameObject>("Prefabs/PathFinder/A_");
-        if (pathFinder) { GameObject.Instantiate(pathFinder); }
+        GameObject.Instantiate(pathFinder);
 
         GameObject player = Resources.Load<GameObject>("Prefabs/Player");
-        if (player) {
-            player = GameObject.Instantiate(player);
-            Camera.main.GetComponent<CameraFollow>().PlayerTransform = player.transform;
-        }
+        player = GameObject.Instantiate(player);
+        Camera.main.GetComponent<CameraFollow>().PlayerTransform = player.transform;
         GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
-        if (healthBar) { GameObject.Instantiate(healthBar); }
+        GameObject.Instantiate(healthBar);
 
+        pauseMenu.SetActive(false);
+        quitWarning.SetActive(false);
+        deathCanvas.SetActive(false);
     }
 }

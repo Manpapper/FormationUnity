@@ -15,6 +15,7 @@ public class CC2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		Physics2D.IgnoreLayerCollision(3, 7);
 	}
 
 	private void FixedUpdate()
@@ -59,7 +60,12 @@ public class CC2D : MonoBehaviour
     {
 		pStats.PlayerHealth -= damage;
 		UpdateHealthBar(pStats.PlayerHealth);
-    }
+		if(pStats.PlayerHealth <= 0)
+		{
+			GameObject.Find("GameHandler").GetComponent<GameHandler>().deathCanvas.SetActive(true);
+			Destroy(this.gameObject);
+		}
+	}
 
 	private void UpdateHealthBar(float value)
     {

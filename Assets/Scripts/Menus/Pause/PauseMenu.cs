@@ -4,31 +4,32 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    private GameObject pauseCanvas;
-    private GameObject toMenuWarning;
+	private bool isWarningActive = false;
+    public bool isPaused = false;
 
+    public bool IsWarningActive { get => isWarningActive; set => isWarningActive = value; }
 
-    void Start()
+	void Awake()
     {
-        GetItems();
     }
 
-    void GetItems()
-	{
-        pauseCanvas = GameObject.Find("PauseCanvas");
-
-        toMenuWarning = Resources.Load<GameObject>("Prefabs/ToMenuWarning");
-        toMenuWarning = GameObject.Instantiate(toMenuWarning);
-        toMenuWarning.SetActive(false);
+    public void Pause()
+	{   
+        Time.timeScale = 0;
+        isPaused = true;
+        this.gameObject.SetActive(true);
     }
 
     public void Resume()
 	{
-        //Resume game
-	}
+        Time.timeScale = 1;
+        isPaused = false;
+        this.gameObject.SetActive(false);
+    }
 
     public void QuitToMenu()
 	{
-        toMenuWarning.SetActive(true);
-	}
+        GameObject.Find("GameHandler").GetComponent<GameHandler>().quitWarning.SetActive(true);
+        IsWarningActive = true;
+    }
 }
