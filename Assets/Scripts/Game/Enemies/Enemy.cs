@@ -31,7 +31,7 @@ public abstract class Enemy : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-        if (!haveAttacked && col == player.GetComponent<CapsuleCollider2D>())
+        if (!haveAttacked && col == player.GetComponent<BoxCollider2D>())
         {
             StartCoroutine(AttackLogic());
         }
@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (!haveAttacked && col == player.GetComponent<CapsuleCollider2D>())
+        if (!haveAttacked && col == player.GetComponent<BoxCollider2D>())
         {
             StartCoroutine(AttackLogic());
         }
