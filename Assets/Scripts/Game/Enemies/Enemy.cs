@@ -26,13 +26,11 @@ public abstract class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<CC2D>();
-        GetComponent<AIDestinationSetter>().target = player.transform;
-        //Physics2D.IgnoreLayerCollision(7, 3);
+        GetComponentInParent<AIDestinationSetter>().target = player.transform;
     }
 
-	/*private void OnTriggerEnter2D(Collider2D col)
+	private void OnTriggerEnter2D(Collider2D col)
 	{
-        Debug.Log("Enter trigger");
         if (!haveAttacked && col == player.GetComponent<CapsuleCollider2D>())
         {
             StartCoroutine(AttackLogic());
@@ -42,22 +40,6 @@ public abstract class Enemy : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         if (!haveAttacked && col == player.GetComponent<CapsuleCollider2D>())
-        {
-            StartCoroutine(AttackLogic());
-        }
-    }*/
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (!haveAttacked && col.collider == player.GetComponent<CapsuleCollider2D>())
-        {
-            StartCoroutine(AttackLogic());
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D col)
-    {
-        if (!haveAttacked && col.collider == player.GetComponent<CapsuleCollider2D>())
         {
             StartCoroutine(AttackLogic());
         }
