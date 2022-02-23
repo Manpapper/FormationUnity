@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : Enemy
+public class Pacman : Enemy
 {
     public void Start()
     {
-        Health = 100;
+        Health = 200;
         MovementSpeed = 10;
-        Damage = 0.5f;
+        Damage = 1;
         Cooldown = 0.5f;
     }
 }

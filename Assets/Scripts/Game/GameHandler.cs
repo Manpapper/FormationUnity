@@ -12,11 +12,8 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemy");
+        GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
         if (enemy) { GameObject.Instantiate(enemy); }
-
-        GameObject packman = Resources.Load<GameObject>("Prefabs/Packman");
-        if (packman) { GameObject.Instantiate(packman); }
     }
 
     private void Init()

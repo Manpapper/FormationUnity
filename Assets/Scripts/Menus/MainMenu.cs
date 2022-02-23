@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
     void GetItems()
     {        
-        settingsMenuCanvas = Resources.Load<GameObject>("Prefabs/SettingsMenu");
+        settingsMenuCanvas = Resources.Load<GameObject>("Prefabs/UI/Menu/SettingsMenu");
         
         settingsMenuCanvas = GameObject.Instantiate(settingsMenuCanvas);
         settingsMenuCanvas.SetActive(false);
