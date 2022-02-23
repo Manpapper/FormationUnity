@@ -20,7 +20,6 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float hp)
     {
         healthBar.value = hp;
-        Debug.Log("healthBar.value: " + healthBar.value);
     }
 
 }
