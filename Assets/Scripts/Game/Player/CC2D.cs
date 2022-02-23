@@ -15,7 +15,7 @@ public class CC2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		Physics2D.IgnoreLayerCollision(3, 7);
+		//Physics2D.IgnoreLayerCollision(3, 7);
 	}
 
 	private void FixedUpdate()
