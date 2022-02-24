@@ -10,6 +10,11 @@ public class GameHandler : MonoBehaviour
     public GameObject quitWarning;
     PauseMenu pauseMenuScript;
 
+    public GameObject enemy;
+    public GameObject[] spawners;
+    public float spawnCd = 1.5f;
+    public bool canSpawn = true;
+
     private void Awake()
     {
         Init();
@@ -32,10 +37,27 @@ public class GameHandler : MonoBehaviour
                 pauseMenuScript.Pause();
             }
 		}
+
+		if (canSpawn)
+		{
+            StartCoroutine(spawnLogic());
+		}
 	}
+
+    IEnumerator spawnLogic()
+	{
+        canSpawn = false;
+        enemy.transform.position = spawners[Random.Range(0, spawners.Length)].transform.position;
+        GameObject.Instantiate(enemy);
+        yield return new WaitForSeconds(spawnCd);
+        canSpawn = true;
+
+    }
 
 	private void Init()
     {
+        spawners = GameObject.FindGameObjectsWithTag("Spawner");
+
         deathCanvas = Resources.Load<GameObject>("Prefabs/UI/DeathCanvas");
         deathCanvas = GameObject.Instantiate(deathCanvas);
 
@@ -55,11 +77,12 @@ public class GameHandler : MonoBehaviour
         GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
         GameObject.Instantiate(healthBar);
 
-        GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
-        GameObject.Instantiate(enemy);
+        enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
 
         pauseMenu.SetActive(false);
         quitWarning.SetActive(false);
         deathCanvas.SetActive(false);
     }
+
+    
 }
