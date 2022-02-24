@@ -71,7 +71,8 @@ public abstract class Enemy : MonoBehaviour
 	{
         if (facingRight)
         {
-            enemyRB.AddForce(new Vector2(knockbackForce * knockbackMultiplier, 0), ForceMode2D.Force);
+            enemyRB.AddForce(knockbackForce * transform.right, ForceMode2D.Impulse);
+            Debug.Log(transform.right + " " + GetComponentInParent<Transform>().right);
         }
         else if (!facingRight)
         {
