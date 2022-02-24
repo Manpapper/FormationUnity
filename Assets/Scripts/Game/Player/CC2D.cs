@@ -8,6 +8,7 @@ public class CC2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	public float damage = 2f;
 
 	public PlayerStats pStats = new PlayerStats();
 	private HealthBar healthBar;

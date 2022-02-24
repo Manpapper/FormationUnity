@@ -5,7 +5,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    private int health;
+    [SerializeField]
+    private float health;
     private float movementSpeed;
     private float damage;
     private float cooldown;
@@ -17,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     private CC2D playerController;
 
-    public int Health { get => health; set => health = value; }
+    public float Health { get => health; set => health = value; }
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public float Damage { get => damage; set => damage = value; }
     public float Cooldown { get => cooldown; set => cooldown = value; }
@@ -35,7 +36,11 @@ public abstract class Enemy : MonoBehaviour
         if (!haveAttacked && col == player.GetComponent<BoxCollider2D>())
         {
             StartCoroutine(AttackLogic());
-        }
+        } else if ( col == player.GetComponent<CapsuleCollider2D>())
+		{
+            Debug.Log("bim");
+            TakeDamage(player.GetComponent<CC2D>().damage);
+		}
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -43,6 +48,15 @@ public abstract class Enemy : MonoBehaviour
         if (!haveAttacked && col == player.GetComponent<BoxCollider2D>())
         {
             StartCoroutine(AttackLogic());
+        }
+    }
+
+	public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 
