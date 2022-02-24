@@ -37,8 +37,13 @@ public abstract class Enemy : MonoBehaviour
     private void Init()
 	{
         player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<CC2D>();
-        GetComponentInParent<AIDestinationSetter>().target = player.transform;
+
+        if (player)
+        {
+            playerController = player.GetComponent<CC2D>();
+            GetComponentInParent<AIDestinationSetter>().target = player.transform;
+        }
+
         _AIPath = GetComponentInParent<AIPath>();
         _AIPath.maxSpeed *= movementSpeed;
         enemyRB = GetComponentInParent<Rigidbody2D>();

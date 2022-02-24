@@ -11,8 +11,9 @@ public class GameHandler : MonoBehaviour
     PauseMenu pauseMenuScript;
 
     public GameObject enemy;
+    private GameObject enemies;
     public GameObject[] spawners;
-    public float spawnCd = 1.5f;
+    private float spawnCd = .1f;//1.5f;
     public bool canSpawn = true;
 
     private void Awake()
@@ -43,13 +44,15 @@ public class GameHandler : MonoBehaviour
 	{
         canSpawn = false;
         enemy.transform.position = spawners[Random.Range(0, spawners.Length)].transform.position;
-        GameObject.Instantiate(enemy);
+        GameObject.Instantiate(enemy).transform.SetParent(enemies.transform);
         yield return new WaitForSeconds(spawnCd);
         canSpawn = true;
     }
 
 	private void Init()
     {
+        enemies = new GameObject("Enemies");
+
         spawners = GameObject.FindGameObjectsWithTag("Spawner");
 
         deathCanvas = Resources.Load<GameObject>("Prefabs/UI/DeathCanvas");

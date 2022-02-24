@@ -121,6 +121,7 @@ public class CC2D : MonoBehaviour
 		{
 			GameObject.Find("GameHandler").GetComponent<GameHandler>().deathCanvas.SetActive(true);
 			Destroy(this.gameObject);
+			Destroy(healthBar.gameObject);
 		}
 	}
 
@@ -129,5 +130,6 @@ public class CC2D : MonoBehaviour
         if (!healthBar) { healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>(); };
 
 		healthBar.SetHealth(value);
-    }
+		
+	}
 }
