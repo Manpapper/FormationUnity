@@ -75,12 +75,10 @@ public abstract class Enemy : MonoBehaviour
         if (facingRight)
         {
             enemyRB.AddForce(new Vector2(knockbackForce * knockbackMultiplier, 0), ForceMode2D.Force);
-            Debug.Log(knockbackForce);
         }
         else if (!facingRight)
         {
             enemyRB.AddForce(new Vector2(-knockbackForce * knockbackMultiplier, 0), ForceMode2D.Force);
-            Debug.Log(knockbackForce);
         }
 
         health -= damage;
