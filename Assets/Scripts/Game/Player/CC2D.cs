@@ -64,7 +64,6 @@ public class CC2D : MonoBehaviour
 
 	void playerAttack()
 	{
-
 		if (finishedAttacking)
 		{
 			StartCoroutine(playerAttackLogic());
