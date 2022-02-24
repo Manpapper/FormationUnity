@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,16 +10,20 @@ public class CC2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 
 	public PlayerStats pStats = new PlayerStats();
-
 	private HealthBar healthBar;
-
 	private Animator playerAnim;
+	[SerializeField]
+	private bool isAttacking = false;
+	private float fireRate = 1f;
+	private float atkAnimSpeed = 2f;
+
+	private CircleCollider2D weaponCollider;
 
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		playerAnim = this.gameObject.GetComponent<Animator>();
-		//Physics2D.IgnoreLayerCollision(3, 7);
+		playerAnim.SetFloat("atkAnimSpeed", atkAnimSpeed);
 	}
 
 	private void FixedUpdate()
@@ -27,6 +32,7 @@ public class CC2D : MonoBehaviour
 
 	private void Update()
 	{
+		playerAttack();
 	}
 
 	public void Move(float moveX, float moveY)
@@ -50,16 +56,36 @@ public class CC2D : MonoBehaviour
 		}
 	}
 
+	void playerAttack()
+	{
+		if (!isAttacking)
+		{
+			StartCoroutine(playerAttackLogic());
+		}
+	}
+
+	IEnumerator playerAttackLogic()
+	{
+		isAttacking = false;
+		playerAnim.SetBool("isAttacking", false);
+		yield return new WaitForSeconds(fireRate);
+		playerAnim.SetBool("isAttacking", true);
+		isAttacking = true;
+		yield return new WaitForSeconds(fireRate);
+	}
 
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		if (!isAttacking)
+		{
+			// Multiply the player's x local scale by -1.
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+		}
 	}
 
 	public void TakeDamage(float damage)
