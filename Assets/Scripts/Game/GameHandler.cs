@@ -40,17 +40,17 @@ public class GameHandler : MonoBehaviour
 
 		if (canSpawn)
 		{
-            StartCoroutine(spawnLogic());
+            StartCoroutine(SpawnLogic());
 		}
 	}
 
-    IEnumerator spawnLogic()
+    IEnumerator SpawnLogic()
 	{
         canSpawn = false;
         enemy.transform.position = spawners[Random.Range(0, spawners.Length)].transform.position;
         GameObject.Instantiate(enemy);
         yield return new WaitForSeconds(spawnCd);
-        canSpawn = true;
+        //canSpawn = true;
 
     }
 

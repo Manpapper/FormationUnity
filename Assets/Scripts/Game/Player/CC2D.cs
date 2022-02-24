@@ -24,12 +24,15 @@ public class CC2D : MonoBehaviour
 
 	private CapsuleCollider2D weaponCollider;
 
+	public bool FacingRight { get => m_FacingRight;}
+	public float AtkAnimSpeed { get => atkAnimSpeed;}
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		weaponCollider = this.GetComponent<CapsuleCollider2D>();
 		playerAnim = this.gameObject.GetComponent<Animator>();
-		playerAnim.SetFloat("atkAnimSpeed", atkAnimSpeed);
+		playerAnim.SetFloat("atkAnimSpeed", AtkAnimSpeed);
 	}
 
 	private void FixedUpdate()
@@ -50,13 +53,13 @@ public class CC2D : MonoBehaviour
 		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 		// If the input is moving the player right and the player is facing left...
-		if (moveX > 0 && !m_FacingRight || !didFlip)
+		if (moveX > 0 && !FacingRight || !didFlip)
 		{
 			// ... flip the player.
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (moveX < 0 && m_FacingRight || !didFlip)
+		else if (moveX < 0 && FacingRight || !didFlip)
 		{
 			// ... flip the player.
 			Flip();
