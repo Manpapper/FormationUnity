@@ -25,8 +25,20 @@ public class PM2D : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
         verticalMove = Input.GetAxisRaw("Vertical");
-        controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, verticalMove * Time.fixedDeltaTime * runSpeed);
-        playerAnim.SetFloat("Speed", Mathf.Abs(horizontalMove * runSpeed) + Mathf.Abs(verticalMove * runSpeed));
+
+        float horizontalMoveSpeed = Mathf.Abs(horizontalMove * runSpeed);
+        float verticalMoveSpeed = Mathf.Abs(verticalMove * runSpeed);
+
+        if(horizontalMoveSpeed > 0 && verticalMoveSpeed > 0)
+        {
+            controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed / 1.5f, verticalMove * Time.fixedDeltaTime * runSpeed / 1.5f);
+        }
+        else
+        {
+            controller.Move(horizontalMove * Time.fixedDeltaTime * runSpeed, verticalMove * Time.fixedDeltaTime * runSpeed);
+        }
+
+        playerAnim.SetFloat("Speed", horizontalMoveSpeed + verticalMoveSpeed);
     }
 
 	private void FixedUpdate()

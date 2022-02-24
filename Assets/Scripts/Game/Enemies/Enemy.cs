@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     private int health;
-    private int movementSpeed;
+    private float movementSpeed;
     private float damage;
     private float cooldown;
 
@@ -18,15 +18,16 @@ public abstract class Enemy : MonoBehaviour
     private CC2D playerController;
 
     public int Health { get => health; set => health = value; }
-    public int MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public float Damage { get => damage; set => damage = value; }
     public float Cooldown { get => cooldown; set => cooldown = value; }
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<CC2D>();
         GetComponentInParent<AIDestinationSetter>().target = player.transform;
+        GetComponentInParent<AIPath>().maxSpeed *= movementSpeed;
     }
 
 	private void OnTriggerEnter2D(Collider2D col)

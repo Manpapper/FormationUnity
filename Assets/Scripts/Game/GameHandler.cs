@@ -17,8 +17,7 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
-        if (enemy) { GameObject.Instantiate(enemy); }
+
     }
 
 	private void Update()
@@ -55,6 +54,9 @@ public class GameHandler : MonoBehaviour
         Camera.main.GetComponent<CameraFollow>().PlayerTransform = player.transform;
         GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
         GameObject.Instantiate(healthBar);
+
+        GameObject enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
+        GameObject.Instantiate(enemy);
 
         pauseMenu.SetActive(false);
         quitWarning.SetActive(false);
