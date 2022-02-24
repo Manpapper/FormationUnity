@@ -38,7 +38,6 @@ public abstract class Enemy : MonoBehaviour
             StartCoroutine(AttackLogic());
         } else if ( col == player.GetComponent<CapsuleCollider2D>())
 		{
-            Debug.Log("bim");
             TakeDamage(player.GetComponent<CC2D>().damage);
 		}
     }
