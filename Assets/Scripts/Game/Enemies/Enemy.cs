@@ -14,8 +14,9 @@ public abstract class Enemy : MonoBehaviour
     private bool haveAttacked = false;
     [SerializeField]
     private Rigidbody2D enemyRB;
-    private int knockbackMultiplier = 1000; 
-    private float knockbackForce = 6f;
+    private AIPath _AIPath;
+    private int knockbackMultiplier = 100; 
+    private float knockbackForce = 3f;
     private bool wasAttacked = false;
 
     [SerializeField]
@@ -38,7 +39,8 @@ public abstract class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<CC2D>();
         GetComponentInParent<AIDestinationSetter>().target = player.transform;
-        GetComponentInParent<AIPath>().maxSpeed *= movementSpeed;
+        _AIPath = GetComponentInParent<AIPath>();
+        _AIPath.maxSpeed *= movementSpeed;
         enemyRB = GetComponentInParent<Rigidbody2D>();
     }
 
@@ -69,14 +71,16 @@ public abstract class Enemy : MonoBehaviour
 
     IEnumerator takeDmgLogic(float damage, bool facingRight)
 	{
+        _AIPath.canMove = false;
         if (facingRight)
         {
-            enemyRB.AddForce(knockbackForce * transform.right, ForceMode2D.Impulse);
-            Debug.Log(transform.right + " " + GetComponentInParent<Transform>().right);
+            enemyRB.AddForce(new Vector2(knockbackForce * knockbackMultiplier, 0), ForceMode2D.Force);
+            Debug.Log(knockbackForce);
         }
         else if (!facingRight)
         {
             enemyRB.AddForce(new Vector2(-knockbackForce * knockbackMultiplier, 0), ForceMode2D.Force);
+            Debug.Log(knockbackForce);
         }
 
         health -= damage;
@@ -84,9 +88,11 @@ public abstract class Enemy : MonoBehaviour
         {
             Destroy(gameObject.transform.parent.gameObject);
         }
-
+               
         wasAttacked = true;
         yield return new WaitForSeconds(1/ playerController.AtkAnimSpeed);
+        enemyRB.velocity = Vector2.zero;
+        _AIPath.canMove = true;
         wasAttacked = false;
 	}
 

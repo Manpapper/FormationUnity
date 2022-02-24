@@ -19,11 +19,6 @@ public class GameHandler : MonoBehaviour
     {
         Init();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
 	private void Update()
 	{
@@ -50,8 +45,7 @@ public class GameHandler : MonoBehaviour
         enemy.transform.position = spawners[Random.Range(0, spawners.Length)].transform.position;
         GameObject.Instantiate(enemy);
         yield return new WaitForSeconds(spawnCd);
-        //canSpawn = true;
-
+        canSpawn = true;
     }
 
 	private void Init()
