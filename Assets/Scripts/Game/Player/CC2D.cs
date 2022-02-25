@@ -87,7 +87,7 @@ public class CC2D : MonoBehaviour
 
 	private void startAtk()
 	{
-		playerAs.PlayOneShot(playerAs.clip);
+		playerAs.PlayOneShot(playerAs.clip, .3f);
 		finishedAttacking = false;
 		playerAnim.SetBool("isAttacking", true);
 		isAttacking = true;

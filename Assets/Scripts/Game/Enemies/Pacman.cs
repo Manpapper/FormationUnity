@@ -11,7 +11,7 @@ public class Pacman : Enemy
         Damage = 2f;
         Cooldown = 0.2f;
 
-        EnemySound = Resources.Load<AudioClip>("EnemySound");
-        EnemyDeath = Resources.Load<AudioClip>("EnemyDeath");
+        EnemySound = Resources.Load<AudioClip>("Audio/EnemySound");
+        EnemyDeath = Resources.Load<AudioClip>("Audio/EnemyDeath");
     }
 }
