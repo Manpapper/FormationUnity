@@ -18,7 +18,7 @@ public class GameHandler : MonoBehaviour
     public GameObject[] spawners;
     private float _spawnCdPacman = 1.5f;
     private float _spawnCdHand = 3f;
-    public bool canSpawn = true;
+    private bool canSpawn = true;
 
 	public float spawnCdPacman { get => _spawnCdPacman; set => _spawnCdPacman = value; }
 	public float spawnCdHand { get => _spawnCdHand; set => _spawnCdHand = value; }
@@ -86,7 +86,7 @@ public class GameHandler : MonoBehaviour
         GameObject pathFinder = Resources.Load<GameObject>("Prefabs/PathFinder/A_");
         GameObject.Instantiate(pathFinder);
 
-        GameObject player = Resources.Load<GameObject>("Prefabs/Player");
+        GameObject player = Resources.Load<GameObject>("Prefabs/Player/Player");
         player = GameObject.Instantiate(player);
         Camera.main.GetComponent<CameraFollow>().PlayerTransform = player.transform;
 

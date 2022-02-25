@@ -139,8 +139,8 @@ public class CC2D : MonoBehaviour
 			pStats.playerXp -= xpNeededToLvlUp;
 			pStats.playerLvl++;
 			xpNeededToLvlUp *= xpNeedMultiplier;
-			gH.spawnCdHand /= 0.05f;
-			gH.spawnCdPacman /= 0.05f;
+			gH.spawnCdHand *= 0.95f;
+			gH.spawnCdPacman *= 0.95f;
 			levelUp.SetActive();
 		} while (pStats.playerXp > xpNeededToLvlUp);
 
@@ -186,7 +186,6 @@ public class CC2D : MonoBehaviour
 
 	public void UpdateCounterCanvas()
 	{
-
 		GameObject.Find("foesKilled").GetComponent<Text>().text = $"Kills : {PlayerPrefs.GetInt("EnemiesKilled")} (Best: {PlayerPrefs.GetInt("BestScore")})";
 		GameObject.Find("levelDisplay").GetComponent<Text>().text = $"Level {pStats.playerLvl}";
 	}
