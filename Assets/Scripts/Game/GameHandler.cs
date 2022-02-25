@@ -68,6 +68,7 @@ public class GameHandler : MonoBehaviour
         spawners = GameObject.FindGameObjectsWithTag("Spawner");
 
         counterCanvas = Resources.Load<GameObject>("Prefabs/UI/Counters");
+        counterCanvas = GameObject.Instantiate(counterCanvas);
 
         deathCanvas = Resources.Load<GameObject>("Prefabs/UI/DeathCanvas");
         deathCanvas = GameObject.Instantiate(deathCanvas);
