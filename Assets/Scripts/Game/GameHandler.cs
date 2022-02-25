@@ -73,8 +73,11 @@ public class GameHandler : MonoBehaviour
         player = GameObject.Instantiate(player);
         Camera.main.GetComponent<CameraFollow>().PlayerTransform = player.transform;
 
-        GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
+        GameObject healthBar = Resources.Load<GameObject>("Prefabs/UI/Bar/HealthBar");
         GameObject.Instantiate(healthBar);
+
+        GameObject XpBar = Resources.Load<GameObject>("Prefabs/UI/Bar/XpBar");
+        GameObject.Instantiate(XpBar);
 
 
         enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
