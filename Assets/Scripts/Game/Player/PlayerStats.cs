@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats
 {
-	int _playerLvl = 0;
+	int _playerLvl = 1;
 	float _movementSpeed = 1f;
 	float _playerHealth = 100f;
 	float _playerMaxHealth = 100f;

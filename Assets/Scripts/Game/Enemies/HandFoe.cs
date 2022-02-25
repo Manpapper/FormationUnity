@@ -14,6 +14,5 @@ public class HandFoe : Enemy
 
         enemySound = Resources.Load<AudioClip>("Audio/EnemySound2");
         enemyDeath = Resources.Load<AudioClip>("Audio/EnemyDeath2");
-        Debug.Log("son mort: " + enemyDeath);
     }
 }
