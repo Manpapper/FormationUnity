@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour
     private float _movementSpeed;
     private float _damage;
     private float _cooldown;
+    private int _xpGiven;
 
     private bool haveAttacked = false;
     [SerializeField]
@@ -35,6 +36,7 @@ public abstract class Enemy : MonoBehaviour
 	public AudioClip enemySound { get => _enemySound; set => _enemySound = value; }
 	public AudioClip enemyDeath { get => _enemyDeath; set => _enemyDeath = value; }
 	public AudioSource enemyAs { get => _enemyAs; set => _enemyAs = value; }
+	public int xpGiven { get => _xpGiven; set => _xpGiven = value; }
 
 	private void Start()
     {
@@ -99,7 +101,7 @@ public abstract class Enemy : MonoBehaviour
         _health -= _damage;
         if (_health <= 0)
         {
-            playerController.addXp(100);
+            playerController.addXp(_xpGiven);
             AudioSource.PlayClipAtPoint(_enemyDeath, transform.position, .1f);
             Destroy(gameObject.transform.parent.gameObject);
         }

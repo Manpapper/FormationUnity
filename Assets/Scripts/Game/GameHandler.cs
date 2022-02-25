@@ -12,9 +12,11 @@ public class GameHandler : MonoBehaviour
     PauseMenu pauseMenuScript;
 
     public GameObject enemy;
+    public GameObject enemy2;
     private GameObject enemies;
     public GameObject[] spawners;
-    private float spawnCd = 1.5f;
+    private float spawnCdPacman = 1.5f;
+    private float spawnCdHand = 3f;
     public bool canSpawn = true;
 
     private void Awake()
@@ -37,16 +39,24 @@ public class GameHandler : MonoBehaviour
 
 		if (canSpawn)
 		{
-            StartCoroutine(SpawnLogic());
-		}
+            float random = Random.Range(0, 100);
+            if( random < 50)
+			{
+                StartCoroutine(SpawnLogic(enemy, spawnCdPacman));
+			}
+			else
+			{
+                StartCoroutine(SpawnLogic(enemy2, spawnCdHand));
+			}
+        }
 	}
 
-    IEnumerator SpawnLogic()
+    IEnumerator SpawnLogic(GameObject foe, float spawnCoolDown)
 	{
         canSpawn = false;
-        enemy.transform.position = spawners[Random.Range(0, spawners.Length)].transform.position;
-        GameObject.Instantiate(enemy).transform.SetParent(enemies.transform);
-        yield return new WaitForSeconds(spawnCd);
+        foe.transform.position = spawners[Random.Range(0, spawners.Length)].transform.position;
+        GameObject.Instantiate(foe).transform.SetParent(enemies.transform);
+        yield return new WaitForSeconds(spawnCoolDown);
         canSpawn = true;
     }
 
@@ -81,6 +91,7 @@ public class GameHandler : MonoBehaviour
 
 
         enemy = Resources.Load<GameObject>("Prefabs/Enemies/Pacman");
+        enemy2 = Resources.Load<GameObject>("Prefabs/Enemies/HandFoe");
 
         pauseMenu.SetActive(false);
         quitWarning.SetActive(false);
