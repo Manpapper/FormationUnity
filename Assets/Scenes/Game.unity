@@ -320,7 +320,6 @@ MonoBehaviour:
   quitWarning: {fileID: 0}
   enemy: {fileID: 0}
   spawners: []
-  spawnCd: 1
   canSpawn: 1
 --- !u!114 &84252034
 MonoBehaviour:

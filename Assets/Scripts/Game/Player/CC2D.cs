@@ -13,7 +13,6 @@ public class CC2D : MonoBehaviour
 	public PlayerStats pStats = new PlayerStats();
 	private HealthBar healthBar;
 	private Animator playerAnim;
-	[SerializeField]
 
 	private bool isAttacking = false;
 	private bool finishedAttacking = true;
@@ -24,6 +23,8 @@ public class CC2D : MonoBehaviour
 
 	private CapsuleCollider2D weaponCollider;
 
+	private AudioSource playerAs;
+
 	public bool FacingRight { get => m_FacingRight;}
 	public float AtkAnimSpeed { get => atkAnimSpeed;}
 
@@ -33,6 +34,7 @@ public class CC2D : MonoBehaviour
 		weaponCollider = this.GetComponent<CapsuleCollider2D>();
 		playerAnim = this.gameObject.GetComponent<Animator>();
 		playerAnim.SetFloat("atkAnimSpeed", AtkAnimSpeed);
+		playerAs = this.GetComponent<AudioSource>();
 	}
 
 	private void FixedUpdate()
@@ -85,6 +87,7 @@ public class CC2D : MonoBehaviour
 
 	private void startAtk()
 	{
+		playerAs.PlayOneShot(playerAs.clip);
 		finishedAttacking = false;
 		playerAnim.SetBool("isAttacking", true);
 		isAttacking = true;

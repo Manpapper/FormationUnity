@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.Audio;
 
 public class GameHandler : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameHandler : MonoBehaviour
     public GameObject enemy;
     private GameObject enemies;
     public GameObject[] spawners;
-    private float spawnCd = .1f;//1.5f;
+    private float spawnCd = 1.5f;
     public bool canSpawn = true;
 
     private void Awake()

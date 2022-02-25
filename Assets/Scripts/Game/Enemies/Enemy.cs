@@ -19,6 +19,10 @@ public abstract class Enemy : MonoBehaviour
     private float knockbackForce = 3f;
     private bool wasAttacked = false;
 
+    private AudioSource enemyAs;
+    private AudioClip enemySound;
+    private AudioClip enemyDeath;
+
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -28,8 +32,10 @@ public abstract class Enemy : MonoBehaviour
     public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public float Damage { get => damage; set => damage = value; }
     public float Cooldown { get => cooldown; set => cooldown = value; }
+	public AudioClip EnemySound { get => enemySound; set => enemySound = value; }
+	public AudioClip EnemyDeath { get => enemyDeath; set => enemyDeath = value; }
 
-    private void Start()
+	private void Start()
     {
         Init();
     }
@@ -43,6 +49,9 @@ public abstract class Enemy : MonoBehaviour
             playerController = player.GetComponent<CC2D>();
             GetComponentInParent<AIDestinationSetter>().target = player.transform;
         }
+
+        enemyAs = GetComponentInParent<AudioSource>();
+
 
         _AIPath = GetComponentInParent<AIPath>();
         _AIPath.maxSpeed *= movementSpeed;
@@ -89,6 +98,8 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            //enemyAs.PlayOneShot(enemyDeath);
+            AudioSource.PlayClipAtPoint(enemyDeath, transform.position);
             Destroy(gameObject.transform.parent.gameObject);
         }
                
