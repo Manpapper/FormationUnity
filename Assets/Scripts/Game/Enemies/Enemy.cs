@@ -101,6 +101,8 @@ public abstract class Enemy : MonoBehaviour
         _health -= _damage;
         if (_health <= 0)
         {
+            PlayerPrefs.SetInt("EnemiesKilled", PlayerPrefs.GetInt("EnemiesKilled") + 1);
+            playerController.UpdateCounterCanvas();
             playerController.addXp(_xpGiven);
             AudioSource.PlayClipAtPoint(_enemyDeath, transform.position, .3f);
             Destroy(gameObject.transform.parent.gameObject);

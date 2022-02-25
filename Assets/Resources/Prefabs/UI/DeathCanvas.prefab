@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 6975442254448473080}
   - component: {fileID: 7459746810385978223}
   - component: {fileID: 3137736478726439397}
+  - component: {fileID: 207562327814945165}
   m_Layer: 5
   m_Name: DeathCanvas
   m_TagString: Untagged
@@ -561,6 +562,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e68582c55487d4985afaa446952894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &207562327814945165
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428480840485599668}
+  m_Enabled: 1
 --- !u!1 &8893567455024360317
 GameObject:
   m_ObjectHideFlags: 0

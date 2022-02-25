@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class CC2D : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class CC2D : MonoBehaviour
 		playerAnim = this.gameObject.GetComponent<Animator>();
 		playerAnim.SetFloat("atkAnimSpeed", pStats.attackSpeed);
 		playerAs = this.GetComponent<AudioSource>();
+		PlayerPrefs.SetInt("EnemiesKilled", 0);
+		UpdateCounterCanvas();
 	}
 
     public void Move(float moveX, float moveY)
@@ -139,8 +142,7 @@ public class CC2D : MonoBehaviour
 		xpBar.SetValue(pStats.playerXp);
 
 		playerAnim.SetFloat("atkAnimSpeed", pStats.attackSpeed);
-		Debug.Log("Lvl up! Level: " + pStats.playerLvl + " New AS : " + pStats.attackSpeed);
-		Debug.Log("Current XP " + pStats.playerXp + " New XP needed : " + xpNeededToLvlUp);
+		UpdateCounterCanvas();
 	}
 
 	private void Flip()
@@ -164,10 +166,23 @@ public class CC2D : MonoBehaviour
 		UpdateHealthBar(pStats.playerHealth);
 		if(pStats.playerHealth <= 0)
 		{
+			if(PlayerPrefs.GetInt("EnemiesKilled") > PlayerPrefs.GetInt("BestScore"))
+			{
+				PlayerPrefs.SetInt("BestScore", PlayerPrefs.GetInt("EnemiesKilled"));
+				UpdateCounterCanvas();
+			}
+
 			GameObject.Find("GameHandler").GetComponent<GameHandler>().deathCanvas.SetActive(true);
 			Destroy(this.gameObject);
 			Destroy(healthBar.gameObject);
 		}
+	}
+
+	public void UpdateCounterCanvas()
+	{
+
+		GameObject.Find("foesKilled").GetComponent<Text>().text = $"Kills : {PlayerPrefs.GetInt("EnemiesKilled")} (Best: {PlayerPrefs.GetInt("BestScore")})";
+		GameObject.Find("levelDisplay").GetComponent<Text>().text = $"Level {pStats.playerLvl}";
 	}
 
 	private void UpdateHealthBar(float value)

@@ -9,6 +9,7 @@ public class GameHandler : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject deathCanvas;
     public GameObject quitWarning;
+    public GameObject counterCanvas;
     PauseMenu pauseMenuScript;
 
     public GameObject enemy;
@@ -65,6 +66,8 @@ public class GameHandler : MonoBehaviour
         enemies = new GameObject("Enemies");
 
         spawners = GameObject.FindGameObjectsWithTag("Spawner");
+
+        counterCanvas = Resources.Load<GameObject>("Prefabs/UI/Counters");
 
         deathCanvas = Resources.Load<GameObject>("Prefabs/UI/DeathCanvas");
         deathCanvas = GameObject.Instantiate(deathCanvas);
