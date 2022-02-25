@@ -39,6 +39,11 @@ public abstract class Bar : MonoBehaviour
         }
     }
 
+    public void SetMaxValue(float maxValue)
+    {
+        bar.maxValue = maxValue;
+    }
+
     IEnumerator HideOnChange()
     {
         yield return new WaitForSeconds(timer);
