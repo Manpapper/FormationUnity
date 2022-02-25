@@ -10,6 +10,7 @@ public class CC2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	public float _damage = 2f;
+	private GameHandler gH;
 
 	public PlayerStats pStats = new PlayerStats();
 	public float xpNeededToLvlUp = 10;
@@ -26,17 +27,17 @@ public class CC2D : MonoBehaviour
 
 	private float _fireRate = 1f;
 
-	private CapsuleCollider2D weaponCollider;
+	private CapsuleCollider2D _weaponCollider;
 
 	private AudioSource playerAs;
 
 	public bool facingRight { get => m_FacingRight;}
     public float fireRate { get => _fireRate; set => _fireRate = value; }
+	public CapsuleCollider2D weaponCollider { get => _weaponCollider; set => _weaponCollider = value; }
 
-    private void Awake()
+	private void Awake()
 	{
 		Init();
-
 	}
 
     private void Start()
@@ -59,11 +60,12 @@ public class CC2D : MonoBehaviour
     private void Init()
     {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		weaponCollider = this.GetComponent<CapsuleCollider2D>();
+		_weaponCollider = this.GetComponentInChildren<CapsuleCollider2D>();
 		playerAnim = this.gameObject.GetComponent<Animator>();
 		playerAnim.SetFloat("atkAnimSpeed", pStats.attackSpeed);
 		playerAs = this.GetComponent<AudioSource>();
 		PlayerPrefs.SetInt("EnemiesKilled", 0);
+		gH = GameObject.Find("GameHandler").GetComponent<GameHandler>();
 		UpdateCounterCanvas();
 	}
 
@@ -111,13 +113,13 @@ public class CC2D : MonoBehaviour
 		finishedAttacking = false;
 		playerAnim.SetBool("isAttacking", true);
 		isAttacking = true;
-		weaponCollider.enabled = true;
+		_weaponCollider.enabled = true;
 	}
 
 	private void stopAtk()
 	{
 		tryLvlUp();
-		weaponCollider.enabled = false;
+		_weaponCollider.enabled = false;
 		playerAnim.SetBool("isAttacking", false);
 		isAttacking = false;
 	}
@@ -137,6 +139,8 @@ public class CC2D : MonoBehaviour
 			pStats.playerXp -= xpNeededToLvlUp;
 			pStats.playerLvl++;
 			xpNeededToLvlUp *= xpNeedMultiplier;
+			gH.spawnCdHand /= 0.05f;
+			gH.spawnCdPacman /= 0.05f;
 			levelUp.SetActive();
 		} while (pStats.playerXp > xpNeededToLvlUp);
 

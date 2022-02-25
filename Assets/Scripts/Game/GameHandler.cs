@@ -16,11 +16,14 @@ public class GameHandler : MonoBehaviour
     public GameObject enemy2;
     private GameObject enemies;
     public GameObject[] spawners;
-    private float spawnCdPacman = 1.5f;
-    private float spawnCdHand = 3f;
+    private float _spawnCdPacman = 1.5f;
+    private float _spawnCdHand = 3f;
     public bool canSpawn = true;
 
-    private void Awake()
+	public float spawnCdPacman { get => _spawnCdPacman; set => _spawnCdPacman = value; }
+	public float spawnCdHand { get => _spawnCdHand; set => _spawnCdHand = value; }
+
+	private void Awake()
     {
         Init();
     }
@@ -43,11 +46,11 @@ public class GameHandler : MonoBehaviour
             float random = Random.Range(0, 100);
             if( random < 50)
 			{
-                StartCoroutine(SpawnLogic(enemy, spawnCdPacman));
+                StartCoroutine(SpawnLogic(enemy, _spawnCdPacman));
 			}
 			else
 			{
-                StartCoroutine(SpawnLogic(enemy2, spawnCdHand));
+                StartCoroutine(SpawnLogic(enemy2, _spawnCdHand));
 			}
         }
 	}

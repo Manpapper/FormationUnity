@@ -68,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
             if (!haveAttacked && col == player.GetComponent<BoxCollider2D>())
             {
                 StartCoroutine(AttackLogic());
-            } else if (!wasAttacked && col == player.GetComponentInChildren<CapsuleCollider2D>())
+            } else if (!wasAttacked && col ==  playerController.weaponCollider)
 		    {
                 StartCoroutine(takeDmgLogic(playerController._damage, playerController.facingRight));
 		    }
