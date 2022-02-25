@@ -30,14 +30,16 @@ public class CC2D : MonoBehaviour
 
 	private void Awake()
 	{
-		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		weaponCollider = this.GetComponent<CapsuleCollider2D>();
-		playerAnim = this.gameObject.GetComponent<Animator>();
-		playerAnim.SetFloat("atkAnimSpeed", AtkAnimSpeed);
-		playerAs = this.GetComponent<AudioSource>();
+		Init();
 	}
 
-	private void FixedUpdate()
+    private void Start()
+    {
+		healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+		healthBar.SetActive(false);
+	}
+
+    private void FixedUpdate()
 	{
 	}
 
@@ -46,8 +48,16 @@ public class CC2D : MonoBehaviour
 		playerAttack();
 	}
 
+    private void Init()
+    {
+		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		weaponCollider = this.GetComponent<CapsuleCollider2D>();
+		playerAnim = this.gameObject.GetComponent<Animator>();
+		playerAnim.SetFloat("atkAnimSpeed", AtkAnimSpeed);
+		playerAs = this.GetComponent<AudioSource>();
+	}
 
-	public void Move(float moveX, float moveY)
+    public void Move(float moveX, float moveY)
 	{
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity = new Vector2(moveX * 10f * pStats.MovementSpeed, moveY * 10f * pStats.MovementSpeed);
@@ -119,6 +129,7 @@ public class CC2D : MonoBehaviour
 	public void TakeDamage(float damage)
     {
 		pStats.PlayerHealth -= damage;
+		healthBar.SetActive(true);
 		UpdateHealthBar(pStats.PlayerHealth);
 		if(pStats.PlayerHealth <= 0)
 		{

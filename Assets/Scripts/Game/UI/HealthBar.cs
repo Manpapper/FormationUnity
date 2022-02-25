@@ -8,7 +8,9 @@ public class HealthBar : MonoBehaviour
     public Slider healthBar;
     public CC2D playerController;
 
-    private void Start()
+    private float timer = 4f;
+
+    private void Awake()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<CC2D>();
 
@@ -20,6 +22,18 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float hp)
     {
         healthBar.value = hp;
+        StartCoroutine(ShowBarOnDamageTaken());
+    }
+
+    IEnumerator ShowBarOnDamageTaken()
+    {
+        yield return new WaitForSeconds(timer);
+        SetActive(false);
+    }
+
+    public void SetActive(bool active)
+    {
+        healthBar.gameObject.SetActive(active);
     }
 
 }
