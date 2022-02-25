@@ -22,6 +22,7 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float hp)
     {
         healthBar.value = hp;
+        SetActive(true);
         StartCoroutine(ShowBarOnDamageTaken());
     }
 
