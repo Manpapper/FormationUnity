@@ -18,20 +18,22 @@ public class CC2D : MonoBehaviour
 	private HealthBar healthBar;
 	private XpBar xpBar;
 	private Animator playerAnim;
+	private LevelUp levelUp;
 
 	private bool isAttacking = false;
 	private bool finishedAttacking = true;
 	private bool didFlip = true;
 
-	private float fireRate = 1f;
+	private float _fireRate = 1f;
 
 	private CapsuleCollider2D weaponCollider;
 
 	private AudioSource playerAs;
 
 	public bool facingRight { get => m_FacingRight;}
+    public float fireRate { get => _fireRate; set => _fireRate = value; }
 
-	private void Awake()
+    private void Awake()
 	{
 		Init();
 	}
@@ -39,6 +41,7 @@ public class CC2D : MonoBehaviour
     private void Start()
     {
 		healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+		levelUp = this.gameObject.GetComponent<LevelUp>();
 		healthBar.SetActive(false);
 		xpBar = GameObject.Find("XpBar").GetComponent<XpBar>();
 	}
@@ -95,7 +98,7 @@ public class CC2D : MonoBehaviour
 		startAtk();
 		yield return new WaitForSeconds(1 / pStats.attackSpeed);
 		stopAtk();
-		yield return new WaitForSeconds(fireRate);
+		yield return new WaitForSeconds(_fireRate);
 		finishedAttacking = true;
 	}
 
@@ -130,9 +133,8 @@ public class CC2D : MonoBehaviour
 		{
 			pStats.playerXp -= xpNeededToLvlUp;
 			pStats.playerLvl++;
-			pStats.attackSpeed += asBonus;
-			fireRate -= asBonus;
 			xpNeededToLvlUp *= xpNeedMultiplier;
+			levelUp.SetActive();
 		} while (pStats.playerXp > xpNeededToLvlUp);
 
 		xpBar.SetMaxValue(xpNeededToLvlUp);

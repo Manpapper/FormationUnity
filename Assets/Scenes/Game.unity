@@ -319,6 +319,7 @@ MonoBehaviour:
   deathCanvas: {fileID: 0}
   quitWarning: {fileID: 0}
   enemy: {fileID: 0}
+  enemy2: {fileID: 0}
   spawners: []
   canSpawn: 1
 --- !u!114 &84252034
