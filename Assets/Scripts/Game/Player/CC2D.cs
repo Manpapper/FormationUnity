@@ -11,7 +11,12 @@ public class CC2D : MonoBehaviour
 	public float damage = 2f;
 
 	public PlayerStats pStats = new PlayerStats();
+	public float xpNeededToLvlUp = 5;
+	private float xpNeedMultiplier = 1.2f;
+	private float asBonus = 0.2f;
+
 	private HealthBar healthBar;
+	private XpBar xpBar;
 	private Animator playerAnim;
 
 	private bool isAttacking = false;
@@ -19,14 +24,12 @@ public class CC2D : MonoBehaviour
 	private bool didFlip = true;
 
 	private float fireRate = 1f;
-	private float atkAnimSpeed = 2f;
 
 	private CapsuleCollider2D weaponCollider;
 
 	private AudioSource playerAs;
 
 	public bool FacingRight { get => m_FacingRight;}
-	public float AtkAnimSpeed { get => atkAnimSpeed;}
 
 	private void Awake()
 	{
@@ -37,6 +40,7 @@ public class CC2D : MonoBehaviour
     {
 		healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
 		healthBar.SetActive(false);
+		xpBar = GameObject.Find("XpBar").GetComponent<XpBar>();
 	}
 
     private void FixedUpdate()
@@ -53,7 +57,7 @@ public class CC2D : MonoBehaviour
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		weaponCollider = this.GetComponent<CapsuleCollider2D>();
 		playerAnim = this.gameObject.GetComponent<Animator>();
-		playerAnim.SetFloat("atkAnimSpeed", AtkAnimSpeed);
+		playerAnim.SetFloat("atkAnimSpeed", pStats.AttackSpeed);
 		playerAs = this.GetComponent<AudioSource>();
 	}
 
@@ -89,7 +93,7 @@ public class CC2D : MonoBehaviour
 	IEnumerator playerAttackLogic()
 	{
 		startAtk();
-		yield return new WaitForSeconds(1 / atkAnimSpeed);
+		yield return new WaitForSeconds(1 / pStats.AttackSpeed);
 		stopAtk();
 		yield return new WaitForSeconds(fireRate);
 		finishedAttacking = true;
@@ -106,9 +110,37 @@ public class CC2D : MonoBehaviour
 
 	private void stopAtk()
 	{
+		tryLvlUp();
 		weaponCollider.enabled = false;
 		playerAnim.SetBool("isAttacking", false);
 		isAttacking = false;
+	}
+
+	private void tryLvlUp()
+	{
+		if (pStats.PlayerXp >= xpNeededToLvlUp)
+		{
+			LvlUp();
+		}
+	}
+
+	private void LvlUp()
+	{
+		do
+		{
+			pStats.PlayerXp -= xpNeededToLvlUp;
+			pStats.PlayerLvl++;
+			pStats.AttackSpeed += asBonus;
+			fireRate -= asBonus;
+			xpNeededToLvlUp *= xpNeedMultiplier;
+		} while (pStats.PlayerXp > xpNeededToLvlUp);
+
+		xpBar.SetMaxValue(xpNeededToLvlUp);
+		xpBar.SetValue(pStats.PlayerXp);
+
+		playerAnim.SetFloat("atkAnimSpeed", pStats.AttackSpeed);
+		Debug.Log("Lvl up! Level: " + pStats.PlayerLvl + " New AS : " + pStats.AttackSpeed);
+		Debug.Log("Current XP " + pStats.PlayerXp + " New XP needed : " + xpNeededToLvlUp);
 	}
 
 	private void Flip()
@@ -141,8 +173,12 @@ public class CC2D : MonoBehaviour
 	private void UpdateHealthBar(float value)
     {
         if (!healthBar) { healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>(); };
+		healthBar.SetValue(value);
+	}
 
-		healthBar.SetHealth(value);
-		
+	public void addXp(int xpAdded)
+	{
+		pStats.PlayerXp += xpAdded;
+		xpBar.SetValue(pStats.PlayerXp);
 	}
 }

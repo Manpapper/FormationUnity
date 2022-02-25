@@ -99,12 +99,13 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            playerController.addXp(100);
             AudioSource.PlayClipAtPoint(enemyDeath, transform.position, .1f);
             Destroy(gameObject.transform.parent.gameObject);
         }
                
         wasAttacked = true;
-        yield return new WaitForSeconds(1/ playerController.AtkAnimSpeed);
+        yield return new WaitForSeconds(1/ playerController.pStats.AttackSpeed);
         enemyRB.velocity = Vector2.zero;
         _AIPath.canMove = true;
         wasAttacked = false;

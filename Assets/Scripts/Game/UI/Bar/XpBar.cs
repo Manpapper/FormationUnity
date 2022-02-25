@@ -7,7 +7,7 @@ public class XpBar : Bar
 {    
     protected override void Init()
     {
-        bar.maxValue = playerController.pStats.PlayerMaxHealth;
-        bar.value = playerController.pStats.PlayerHealth;
+        bar.maxValue = playerController.xpNeededToLvlUp;
+        bar.value = playerController.pStats.PlayerXp;
     }
 }
