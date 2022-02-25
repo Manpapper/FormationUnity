@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerStats
 {
-	int playerLvl = 0;
-	float movementSpeed = 1f;
-	float playerHealth = 100f;
-	float playerMaxHealth = 100f;
-	float playerXp = 0;
-	float attackSpeed = 2f;
+	int _playerLvl = 0;
+	float _movementSpeed = 1f;
+	float _playerHealth = 100f;
+	float _playerMaxHealth = 100f;
+	float _playerXp = 0;
+	float _attackSpeed = 2f;
 
-	public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
-	public float PlayerHealth { get => playerHealth; set => playerHealth = value; }
-	public float PlayerMaxHealth { get => playerMaxHealth; set => playerMaxHealth = value; }
-	public int PlayerLvl { get => playerLvl; set => playerLvl = value; }
-	public float PlayerXp { get => playerXp; set => playerXp = value; }
-	public float AttackSpeed { get => attackSpeed; set => attackSpeed = value; }
+	public float movementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
+	public float playerHealth { get => _playerHealth; set => _playerHealth = value; }
+	public float playerMaxHealth { get => _playerMaxHealth; set => _playerMaxHealth = value; }
+	public int playerLvl { get => _playerLvl; set => _playerLvl = value; }
+	public float playerXp { get => _playerXp; set => _playerXp = value; }
+	public float attackSpeed { get => _attackSpeed; set => _attackSpeed = value; }
 }

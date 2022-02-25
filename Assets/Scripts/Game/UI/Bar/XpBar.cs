@@ -8,6 +8,6 @@ public class XpBar : Bar
     protected override void Init()
     {
         bar.maxValue = playerController.xpNeededToLvlUp;
-        bar.value = playerController.pStats.PlayerXp;
+        bar.value = playerController.pStats.playerXp;
     }
 }

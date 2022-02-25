@@ -8,7 +8,7 @@ public class CC2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
-	public float damage = 2f;
+	public float _damage = 2f;
 
 	public PlayerStats pStats = new PlayerStats();
 	public float xpNeededToLvlUp = 5;
@@ -29,7 +29,7 @@ public class CC2D : MonoBehaviour
 
 	private AudioSource playerAs;
 
-	public bool FacingRight { get => m_FacingRight;}
+	public bool facingRight { get => m_FacingRight;}
 
 	private void Awake()
 	{
@@ -57,25 +57,25 @@ public class CC2D : MonoBehaviour
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		weaponCollider = this.GetComponent<CapsuleCollider2D>();
 		playerAnim = this.gameObject.GetComponent<Animator>();
-		playerAnim.SetFloat("atkAnimSpeed", pStats.AttackSpeed);
+		playerAnim.SetFloat("atkAnimSpeed", pStats.attackSpeed);
 		playerAs = this.GetComponent<AudioSource>();
 	}
 
     public void Move(float moveX, float moveY)
 	{
 		// Move the character by finding the target velocity
-		Vector3 targetVelocity = new Vector2(moveX * 10f * pStats.MovementSpeed, moveY * 10f * pStats.MovementSpeed);
+		Vector3 targetVelocity = new Vector2(moveX * 10f * pStats.movementSpeed, moveY * 10f * pStats.movementSpeed);
 		// And then smoothing it out and applying it to the character
 		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 		// If the input is moving the player right and the player is facing left...
-		if (moveX > 0 && !FacingRight || !didFlip)
+		if (moveX > 0 && !facingRight || !didFlip)
 		{
 			// ... flip the player.
 			Flip();
 		}
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (moveX < 0 && FacingRight || !didFlip)
+		else if (moveX < 0 && facingRight || !didFlip)
 		{
 			// ... flip the player.
 			Flip();
@@ -93,7 +93,7 @@ public class CC2D : MonoBehaviour
 	IEnumerator playerAttackLogic()
 	{
 		startAtk();
-		yield return new WaitForSeconds(1 / pStats.AttackSpeed);
+		yield return new WaitForSeconds(1 / pStats.attackSpeed);
 		stopAtk();
 		yield return new WaitForSeconds(fireRate);
 		finishedAttacking = true;
@@ -118,7 +118,7 @@ public class CC2D : MonoBehaviour
 
 	private void tryLvlUp()
 	{
-		if (pStats.PlayerXp >= xpNeededToLvlUp)
+		if (pStats.playerXp >= xpNeededToLvlUp)
 		{
 			LvlUp();
 		}
@@ -128,19 +128,19 @@ public class CC2D : MonoBehaviour
 	{
 		do
 		{
-			pStats.PlayerXp -= xpNeededToLvlUp;
-			pStats.PlayerLvl++;
-			pStats.AttackSpeed += asBonus;
+			pStats.playerXp -= xpNeededToLvlUp;
+			pStats.playerLvl++;
+			pStats.attackSpeed += asBonus;
 			fireRate -= asBonus;
 			xpNeededToLvlUp *= xpNeedMultiplier;
-		} while (pStats.PlayerXp > xpNeededToLvlUp);
+		} while (pStats.playerXp > xpNeededToLvlUp);
 
 		xpBar.SetMaxValue(xpNeededToLvlUp);
-		xpBar.SetValue(pStats.PlayerXp);
+		xpBar.SetValue(pStats.playerXp);
 
-		playerAnim.SetFloat("atkAnimSpeed", pStats.AttackSpeed);
-		Debug.Log("Lvl up! Level: " + pStats.PlayerLvl + " New AS : " + pStats.AttackSpeed);
-		Debug.Log("Current XP " + pStats.PlayerXp + " New XP needed : " + xpNeededToLvlUp);
+		playerAnim.SetFloat("atkAnimSpeed", pStats.attackSpeed);
+		Debug.Log("Lvl up! Level: " + pStats.playerLvl + " New AS : " + pStats.attackSpeed);
+		Debug.Log("Current XP " + pStats.playerXp + " New XP needed : " + xpNeededToLvlUp);
 	}
 
 	private void Flip()
@@ -158,11 +158,11 @@ public class CC2D : MonoBehaviour
 		}
 	}
 
-	public void TakeDamage(float damage)
+	public void TakeDamage(float _damage)
     {
-		pStats.PlayerHealth -= damage;
-		UpdateHealthBar(pStats.PlayerHealth);
-		if(pStats.PlayerHealth <= 0)
+		pStats.playerHealth -= _damage;
+		UpdateHealthBar(pStats.playerHealth);
+		if(pStats.playerHealth <= 0)
 		{
 			GameObject.Find("GameHandler").GetComponent<GameHandler>().deathCanvas.SetActive(true);
 			Destroy(this.gameObject);
@@ -178,7 +178,7 @@ public class CC2D : MonoBehaviour
 
 	public void addXp(int xpAdded)
 	{
-		pStats.PlayerXp += xpAdded;
-		xpBar.SetValue(pStats.PlayerXp);
+		pStats.playerXp += xpAdded;
+		xpBar.SetValue(pStats.playerXp);
 	}
 }

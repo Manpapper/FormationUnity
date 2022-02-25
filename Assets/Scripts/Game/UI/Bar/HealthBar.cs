@@ -7,8 +7,8 @@ public class HealthBar : Bar
 {
     protected override void Init()
     {
-        bar.maxValue = playerController.pStats.PlayerMaxHealth;
-        bar.value = playerController.pStats.PlayerHealth;
+        bar.maxValue = playerController.pStats.playerMaxHealth;
+        bar.value = playerController.pStats.playerHealth;
 
         hideOnChange = true;
         timer = 4f;

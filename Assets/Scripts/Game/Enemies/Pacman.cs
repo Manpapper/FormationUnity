@@ -6,12 +6,12 @@ public class Pacman : Enemy
 {
     public void Awake()
     {
-        Health = 4f;
-        MovementSpeed = 2f;
-        Damage = 2f;
-        Cooldown = 0.2f;
+        health = 4f;
+        movementSpeed = 2f;
+        damage = 2f;
+        cooldown = 0.2f;
 
-        EnemySound = Resources.Load<AudioClip>("Audio/EnemySound");
-        EnemyDeath = Resources.Load<AudioClip>("Audio/EnemyDeath");
+        enemySound = Resources.Load<AudioClip>("Audio/enemySound");
+        enemyDeath = Resources.Load<AudioClip>("Audio/enemyDeath");
     }
 }
