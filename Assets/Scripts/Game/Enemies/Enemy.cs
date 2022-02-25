@@ -34,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
     public float Cooldown { get => cooldown; set => cooldown = value; }
 	public AudioClip EnemySound { get => enemySound; set => enemySound = value; }
 	public AudioClip EnemyDeath { get => enemyDeath; set => enemyDeath = value; }
+	public AudioSource EnemyAs { get => enemyAs; set => enemyAs = value; }
 
 	private void Start()
     {
@@ -98,8 +99,7 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            //enemyAs.PlayOneShot(enemyDeath);
-            AudioSource.PlayClipAtPoint(enemyDeath, transform.position);
+            AudioSource.PlayClipAtPoint(enemyDeath, transform.position, .1f);
             Destroy(gameObject.transform.parent.gameObject);
         }
                
