@@ -36,6 +36,7 @@ public class CC2D : MonoBehaviour
     private void Awake()
 	{
 		Init();
+
 	}
 
     private void Start()
