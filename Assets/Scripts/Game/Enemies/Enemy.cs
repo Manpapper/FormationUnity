@@ -102,10 +102,10 @@ public abstract class Enemy : MonoBehaviour
         if (_health <= 0)
         {
             playerController.addXp(_xpGiven);
-            AudioSource.PlayClipAtPoint(_enemyDeath, transform.position, .1f);
+            AudioSource.PlayClipAtPoint(_enemyDeath, transform.position, .3f);
             Destroy(gameObject.transform.parent.gameObject);
         }
-               
+
         wasAttacked = true;
         yield return new WaitForSeconds(1/ playerController.pStats.attackSpeed);
         enemyRB.velocity = Vector2.zero;

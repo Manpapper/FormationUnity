@@ -11,8 +11,8 @@ public class CC2D : MonoBehaviour
 	public float _damage = 2f;
 
 	public PlayerStats pStats = new PlayerStats();
-	public float xpNeededToLvlUp = 5;
-	private float xpNeedMultiplier = 1.2f;
+	public float xpNeededToLvlUp = 10;
+	private float xpNeedMultiplier = 1.5f;
 	private float asBonus = 0.2f;
 
 	private HealthBar healthBar;

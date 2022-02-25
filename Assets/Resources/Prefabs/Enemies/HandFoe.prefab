@@ -187,9 +187,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011908126, y: -0.010474327}
-  m_Size: {x: 0.38618556, y: 0.22909088}
-  m_Direction: 1
+  m_Offset: {x: -0.005919552, y: -0.025871206}
+  m_Size: {x: 0.2500456, y: 0.41697937}
+  m_Direction: 0
 --- !u!50 &3027299868762903967
 Rigidbody2D:
   serializedVersion: 4
@@ -353,8 +353,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 348178858461425608}
-  - component: {fileID: 6695251413281184067}
-  - component: {fileID: 1969961377000512267}
+  - component: {fileID: 585334106529600967}
+  - component: {fileID: 4426128756300788326}
   m_Layer: 8
   m_Name: ColliderDamage
   m_TagString: Untagged
@@ -376,7 +376,7 @@ Transform:
   m_Father: {fileID: 3027299868762903960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6695251413281184067
+--- !u!114 &585334106529600967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,15 +385,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3987835413150446927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcd8e41b4c8bce040afb672ab3529094, type: 3}
+  m_Script: {fileID: 11500000, guid: f9adcfd2e57a7ca4ea3fd03510eacef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
   enemyRB: {fileID: 0}
   player: {fileID: 0}
   playerController: {fileID: 0}
---- !u!58 &1969961377000512267
-CircleCollider2D:
+--- !u!70 &4426128756300788326
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -405,6 +405,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.09
+  m_Offset: {x: -0.005919552, y: -0.026}
+  m_Size: {x: 0.256, y: 0.42}
+  m_Direction: 0

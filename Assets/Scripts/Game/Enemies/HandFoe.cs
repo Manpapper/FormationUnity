@@ -12,7 +12,8 @@ public class HandFoe : Enemy
         cooldown = 0.2f;
         xpGiven = 4;
 
-        enemySound = Resources.Load<AudioClip>("Audio/enemySound2");
-        enemyDeath = Resources.Load<AudioClip>("Audio/enemyDeath2");
+        enemySound = Resources.Load<AudioClip>("Audio/EnemySound2");
+        enemyDeath = Resources.Load<AudioClip>("Audio/EnemyDeath2");
+        Debug.Log("son mort: " + enemyDeath);
     }
 }
